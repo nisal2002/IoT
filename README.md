@@ -1,5 +1,51 @@
 # IoT
-CM3603
+CM3603 - A responsive web application for tracking train information, schedules, and alerts in Sri Lanka.
+
+## Features
+
+- Real-time train alerts by line
+- Train schedules
+- Responsive design for all devices
+
+## Technologies Used
+
+- React
+- TypeScript
+- Tailwind CSS
+- React Router
+- Lucide React Icons
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nisal2002/IoT.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── LoadingScreen.tsx
+│   ├── MainPage.tsx
+│   ├── LiveTrainAlerts.tsx
+│   └── MainLineAlerts.tsx
+├── App.tsx
+└── main.tsx
+```
 
 
 ## Sinhala Speech to Text Converter
