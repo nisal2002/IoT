@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "train",
+			"path": "../../Users/ASUS/Documents/PlatformIO/Projects/train"
+		},
+		{
+			"name": "esp32",
+			"path": "esp32"
+		},
+		{
+			"name": "esp32-cam",
+			"path": "esp32-cam"
+		}
+	],
+	"settings": {}
+}
