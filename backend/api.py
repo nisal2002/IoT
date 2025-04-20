@@ -3,6 +3,8 @@ from flask_cors import CORS  # Import CORS
 import joblib
 import pandas as pd
 from datetime import datetime, timedelta
+import os
+import json
 
 app = Flask(__name__)
 CORS(app) # Enable CORS for all routes
@@ -84,6 +86,53 @@ def predict_delay():
 })
 
 
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+JSON_FILE = 'src/data/mainlinealerts.json'
+
+def load_data():
+    if os.path.exists(JSON_FILE):
+        with open(JSON_FILE, 'r') as file:
+            return json.load(file)
+    return []
+
+def save_data(data):
+    with open(JSON_FILE, 'w') as file:
+        json.dump(data, file, indent=4)
+
+
+# API to get all alerts
+@app.route('/alerts', methods=['GET'])
+def get_alerts():
+    try:
+        data = load_data()
+        return jsonify(data)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+# API to add a new alert
+@app.route('/alerts', methods=['POST'])
+def add_alert():
+    try:
+        new_alert = request.json
+        data = load_data()
+
+        # Automatically assign next ID
+        new_alert['id'] = max([item['id'] for item in data], default=0) + 1
+
+        ordered_alert = {
+            "id": new_alert["id"],
+            "message": new_alert["message"],
+            "time": new_alert["time"]
+        }
+
+        data.append(ordered_alert)
+        save_data(data)
+        return jsonify({"message": "Alert added successfully", "data": ordered_alert}), 201
+    
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
